@@ -4,3 +4,9 @@ script = ['''
 #! /usr/bin/env zsh
 docker run --gpus all -v $(pwd)/results:/results -v $(pwd)/workspace:/workspace --rm -it nvcr.io/hpc/gamess:17.09-r2-libcchem
 ''']
+[tasks.help]
+description = "open docker shell"
+script = ['''
+#! /usr/bin/env zsh
+docker run --gpus all -v $(pwd)/results:/results -v $(pwd)/workspace:/workspace --rm -it nvcr.io/hpc/gamess:17.09-r2-libcchem help
+''']
