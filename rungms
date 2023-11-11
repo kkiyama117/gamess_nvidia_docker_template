@@ -41,7 +41,7 @@ if ($?LOGFILE == 0) set LOGFILE=default
 if ($?VERNO == 0)   set VERNO=00
 if ($?NCPUS == 0)   set NCPUS=1
 # EDIT: Add output
-if ($?OUTPUT== 0)   set OUTPUT=0
+if ($?OUTPUT == 0)   set OUTPUT=0
 #
 if ($JOB == help) then
    clear
@@ -112,7 +112,7 @@ sed -e /INPUT=\$1/s//INPUT=$JOB/ \
 sed -i 's/TARGET=mpi/TARGET=ga/g' /workspace/scratch/$JOB \
 # Add original one
 #&&sed -i  '$GMSPATH\/gamess.cchem.$VERNO.x < \/dev\/null/$GMSPATH\/gamess.cchem.$VERNO.x < \/dev\/null' /workspace/scratch/$JOB \
-&& sed -i  's/which mpiexec/a cat $PROCFILE' /workspace/scratch/$JOB
+&& sed -i  's/which mpiexec/a cat $PROCFILE/g' /workspace/scratch/$JOB
 && sed -i 's/set currentdir=`pwd`/set currentdir=\/usr\/local\/bin\/gamess/g' /workspace/scratch/$JOB
 #
 #   special option to use an external basis set library
