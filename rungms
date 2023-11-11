@@ -1,6 +1,7 @@
 #!/bin/csh
 
 if($argv[1] == "/bin/bash") exec "$argv[1]"
+if($argv[1] == "/bin/zsh") exec "$argv[1]"
 
 while ($#argv > 0)
    set val=$argv[1]
@@ -16,6 +17,11 @@ while ($#argv > 0)
         breaksw
       case -p:
         set NCPUS=$argv[1]
+        shift
+        breaksw
+      # EDIT: Add output
+      case -o:
+        set OUTPUT=$argv[1]
         shift
         breaksw
       default:
@@ -34,6 +40,8 @@ if ($?JOB == 0)     set JOB=help
 if ($?LOGFILE == 0) set LOGFILE=default
 if ($?VERNO == 0)   set VERNO=00
 if ($?NCPUS == 0)   set NCPUS=1
+# EDIT: Add output
+if ($?OUTPUT== 0)   set OUTPUT=0
 #
 if ($JOB == help) then
    clear
@@ -102,9 +110,10 @@ sed -e /INPUT=\$1/s//INPUT=$JOB/ \
     /usr/local/bin/gamess/rungms > /workspace/scratch/$JOB
 #
 sed -i 's/TARGET=mpi/TARGET=ga/g' /workspace/scratch/$JOB \
-&& sed -i 's/set currentdir=`pwd`/set currentdir=\/usr\/local\/bin\/gamess/g' /workspace/scratch/$JOB
 # Add original one
-&&sed -i 's/TARGET=mpi/TARGET=ga/g' /workspace/scratch/$JOB \
+#&&sed -i  '$GMSPATH\/gamess.cchem.$VERNO.x < \/dev\/null/$GMSPATH\/gamess.cchem.$VERNO.x < \/dev\/null' /workspace/scratch/$JOB \
+&& sed -i  's/which mpiexec/a cat $PROCFILE' /workspace/scratch/$JOB
+&& sed -i 's/set currentdir=`pwd`/set currentdir=\/usr\/local\/bin\/gamess/g' /workspace/scratch/$JOB
 #
 #   special option to use an external basis set library
 #
