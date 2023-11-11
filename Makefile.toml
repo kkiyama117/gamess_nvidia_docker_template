@@ -6,6 +6,14 @@ script = ['''
 docker buildx build . -t hinatan/gamess-docker
 ''']
 
+# test docker
+[tasks.testd]
+description = "test docker container"
+script = ['''
+#! /usr/bin/env zsh
+docker run --gpus all -v $(pwd)/results:/results -v $(pwd)/workspace:/workspace --rm -it docker.io/hinatan/gamess-docker -c "NCPU=4 rungms test_h2.inp"
+''']
+
 # run
 [tasks.shell]
 description = "open docker shell"
