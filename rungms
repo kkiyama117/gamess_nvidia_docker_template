@@ -111,8 +111,8 @@ sed -e /INPUT=\$1/s//INPUT=$JOB/ \
 #
 sed -i 's/TARGET=mpi/TARGET=ga/g' /workspace/scratch/$JOB \
 # Add original one
-&&sed -i  's/$GMSPATH\/gamess.cchem.$VERNO.x < \/dev\/null/$GMSPATH\/gamess.cchem.$VERNO.x/g' /workspace/scratch/$JOB \
-&& sed -i  's/which mpiexec/which mpiexec\n cat $PROCFILE/g' /workspace/scratch/$JOB
+&&sed -i  's/$GMSPATH\/gamess.cchem.$VERNO.x < \/dev\/null/$GMSPATH\/gamess.cchem.$VERNO.x > /results/test.out' /workspace/scratch/$JOB \
+&& sed -i  's/which mpiexec/which mpiexec\n cat $PROCFILE>/\results/\hoge/g' /workspace/scratch/$JOB
 && sed -i 's/set currentdir=`pwd`/set currentdir=\/usr\/local\/bin\/gamess/g' /workspace/scratch/$JOB
 #
 #   special option to use an external basis set library
