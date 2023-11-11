@@ -1,2 +1,6 @@
 src
 meta
+!workspace/restart/.keep
+!workspace/scratch/.keep
+!workspace/test_h2.inp
+workspace
