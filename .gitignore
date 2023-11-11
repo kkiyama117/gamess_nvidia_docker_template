@@ -1,9 +1,9 @@
 src
 meta
+/workspace
+/results
 !workspace/restart/.keep
 !workspace/scratch/.keep
 !workspace/test_h2.inp
-/workspace
 !results/test_h2.log
 !results/test_h2.out
-/results
