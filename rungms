@@ -103,6 +103,8 @@ sed -e /INPUT=\$1/s//INPUT=$JOB/ \
 #
 sed -i 's/TARGET=mpi/TARGET=ga/g' /workspace/scratch/$JOB \
 && sed -i 's/set currentdir=`pwd`/set currentdir=\/usr\/local\/bin\/gamess/g' /workspace/scratch/$JOB
+# Add original one
+&&sed -i 's/TARGET=mpi/TARGET=ga/g' /workspace/scratch/$JOB \
 #
 #   special option to use an external basis set library
 #

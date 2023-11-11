@@ -1,0 +1,33 @@
+#!/bin/csh
+
+if($argv[1] == "/bin/bash") exec "$argv[1]"
+
+while ($#argv > 0)
+   set val=$argv[1]
+   shift
+   switch ($val)
+      case -b:
+        set EXTBAS=$argv[1]
+        shift
+        breaksw
+      case -l:
+        set LOGFILE=$argv[1]
+        shift
+        breaksw
+      case -p:
+        set NCPUS=$argv[1]
+        shift
+        breaksw
+      default:
+        if ($?JOB == 1) then
+           echo You\'ve given too many input file names, $JOB and $val.
+           exit 4
+        else
+           set JOB=$val
+           if ($JOB =~ *.inp) set JOB=$JOB:r
+        endif
+        breaksw
+   endsw
+end
+
+echo $argv

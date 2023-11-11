@@ -1,8 +1,17 @@
+# build command
+[tasks.buildd]
+description = "open docker shell"
+script = ['''
+#! /usr/bin/env zsh
+docker buildx build . -t hinatan/gamess-docker
+''']
+
+# run
 [tasks.shell]
 description = "open docker shell"
 script = ['''
 #! /usr/bin/env zsh
-docker run --gpus all -v $(pwd)/results:/results -v $(pwd)/workspace:/workspace --rm -it nvcr.io/hpc/gamess:17.09-r2-libcchem
+docker run --gpus all -v $(pwd)/results:/results -v $(pwd)/workspace:/workspace --rm -it docker.io/hinatan/gamess-docker
 ''']
 [tasks.help]
 description = "open docker shell"
@@ -10,3 +19,11 @@ script = ['''
 #! /usr/bin/env zsh
 docker run --gpus all -v $(pwd)/results:/results -v $(pwd)/workspace:/workspace --rm -it nvcr.io/hpc/gamess:17.09-r2-libcchem help
 ''']
+
+#OLD one
+#[tasks.old]
+#description = "open docker shell"
+#script = ['''
+#! /usr/bin/env zsh
+#docker run --gpus all -v $(pwd)/results:/results -v $(pwd)/workspace:/workspace --rm -it nvcr.io/hpc/gamess:17.09-r2-libcchem
+#''']
